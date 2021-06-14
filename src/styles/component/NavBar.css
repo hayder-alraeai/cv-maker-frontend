@@ -45,5 +45,6 @@
     .nav-bar-wrapper .nav-bar-middle img{
         height: 100px;
         width: 100px;
+        display: none;
     }
 }

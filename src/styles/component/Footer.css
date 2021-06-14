@@ -25,6 +25,7 @@
     .footer-wrapper .footer-middle{
         width: 100%;
         font-style: italic;
+        font-size: 13px;
     }
     .footer-wrapper .footer-right{
         display: none;
