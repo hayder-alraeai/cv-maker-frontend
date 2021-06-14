@@ -1,0 +1,20 @@
+.side-menu-wrapper{
+    height: calc(100vh - 10rem);
+    position: absolute;
+    top: 10rem;
+    left: 0;
+    width: 30%;
+    opacity: 0;
+    background: linear-gradient(to right, #f74d40, #f5c160);
+    transition: .7s all ease-in-out;
+    overflow: hidden;
+}
+.side-menu-wrapper.active{
+    opacity: 1;
+}
+
+@media (max-width : 600px){
+    .side-menu-wrapper{
+        width: 60%;
+    }
+}
