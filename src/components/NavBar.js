@@ -1,4 +1,8 @@
 import React from 'react';
+import {  BrowserRouter as Router,
+    Switch,
+    Route,
+    Link} from 'react-router-dom'
 import MenuBars from './MenuBars'
 import '../styles/component/NavBar.css';
 import Logo from '../images/cv-maker.logo.svg'
@@ -13,8 +17,9 @@ const NavBar = () => {
                 <img src={Logo} />
             </div>
             <div className='nav-bar-right'>
-                <div>Login</div>
-                <div>Signup</div>
+                <div><Link to="/">Home</Link></div>
+                <div><Link to="/login">Login</Link></div>
+                <div><Link to="/signup">Signup</Link></div>
             </div>
         </div>
     )

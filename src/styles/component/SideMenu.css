@@ -8,6 +8,7 @@
     background: linear-gradient(to right, #f74d40, #f5c160);
     transition: .7s all ease-in-out;
     overflow: hidden;
+    z-index: 1;
 }
 .side-menu-wrapper.active{
     opacity: 1;

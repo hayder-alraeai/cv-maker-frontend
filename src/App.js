@@ -1,9 +1,11 @@
-import Home from './screens/Home'
+import Footer from './components/Footer'
 import {GeneralContextProvider} from './context/GeneralContext'
+import Router from "./Router"
 function App() {
   return (
     <GeneralContextProvider>
-      <Home />
+            <Router />
+            <Footer />
     </GeneralContextProvider>
   );
 }
