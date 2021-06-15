@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -75,7 +75,7 @@ const Login = () => {
             type="submit"
             fullWidth
             variant="contained"
-            style={{background: 'linear-gradient(to bottom, #f74d40, #f5c160)'}}
+            style={{background: 'linear-gradient(to bottom, #f74d40, #f5c160)', color: 'white', fontWeight: 'bolder'}}
             className={classes.submit}
           >
             Sign In
@@ -87,8 +87,8 @@ const Login = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link to='/signup'>
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>

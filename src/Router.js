@@ -1,8 +1,7 @@
 import {
     BrowserRouter,
     Switch,
-    Route,
-    Link
+    Route
   } from "react-router-dom";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
@@ -10,6 +9,8 @@ import Profile from "./screens/Profile";
 import Signup from "./screens/Signup";
 import NavBar from "./components/NavBar"
 import SideMenu from "./components/SideMenu"
+import About from "./screens/About";
+import Settings from "./screens/Settings";
 
 const Router = () => {
     return(
@@ -34,6 +35,16 @@ const Router = () => {
                     <NavBar />
                     <SideMenu />
                     <Profile />
+                </Route>
+                <Route exact path='/settings'>
+                    <NavBar />
+                    <SideMenu />
+                    <Settings />
+                </Route>
+                <Route exact path='/about'>
+                    <NavBar />
+                    <SideMenu />
+                    <About />
                 </Route>
             </Switch>
         </BrowserRouter>

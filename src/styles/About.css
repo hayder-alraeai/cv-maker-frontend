@@ -1,4 +1,4 @@
-.signup-wrapper{
+.about-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width : 600px){
-    .signup-wrapper{
+    .about-wrapper{
         width: 100%;
         margin: 0;
         min-height: calc(100vh - 25rem);

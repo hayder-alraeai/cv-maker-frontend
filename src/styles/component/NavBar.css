@@ -26,8 +26,16 @@
 .nav-bar-right div{
     margin-right: 1rem;
     text-align: right;
+    padding: 0 .2rem;
+}
+.nav-bar-right div.active{
+    border-bottom: 5px solid white;
 }
 .nav-bar-right div a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
     color: white;
 }
