@@ -2,10 +2,10 @@ import '../styles/component/MenuBars.css'
 import {useContext} from 'react'
 import GeneralContext from '../context/GeneralContext'
 const MenuBars = () => {
-    const {isMenuBarsOpen, menuBarsToggleHandler} = useContext(GeneralContext)
+    const {generalState, generalDispatcher} = useContext(GeneralContext)
     return(
-        <div className="menu-bars-wrapper" onClick={menuBarsToggleHandler}>
-            <div className={isMenuBarsOpen ? "bars close" : "bars"}></div>
+        <div className="menu-bars-wrapper" onClick={() => generalDispatcher({type: 'isMenuBarsOpen'})}>
+            <div className={generalState.isMenuBarsOpen ? "bars close" : "bars"}></div>
         </div>
     )
 }

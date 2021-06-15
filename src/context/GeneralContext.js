@@ -1,24 +1,32 @@
-import {createContext, useState} from 'react'
+import {createContext, useReducer} from 'react'
+import GeneralReducer from './reducers/GeneralReducer'
+import LoginReducer from './reducers/LoginReducer'
+import RegisterReducer from './reducers/RegisterReducer'
 const GeneralContext = createContext()
 
 export const GeneralContextProvider = ({children}) => {
-    const [isMenuBarsOpen, setIsMenuBarsOpen] = useState(false)
-    const [active, setActive] = useState('home')
-    const [sideBarActive, setSideBarActive] = useState('')
-    const activeToggleHandler = value => {
-        setActive(value)
-    }
-    const menuBarsToggleHandler = () => {
-        setIsMenuBarsOpen(!isMenuBarsOpen)
-    }
-    const sideBarActiveToggleHandler = value => {
-        setSideBarActive(value)
-    }
+    const [generalState, generalDispatcher] = useReducer(GeneralReducer, {
+                                                    isMenuBarsOpen: false, 
+                                                    active: 'home'
+                                                })
+    const [loginState, loginDispatcher] = useReducer(LoginReducer, {
+                                                    email: '',
+                                                    password: ''
+                                                })
+    const [registerState, registerDispatcher] = useReducer(RegisterReducer, {
+                                                    firstName: '',
+                                                    lastName: '',
+                                                    email: '',
+                                                    password: ''
+                                                })
     return(
-        <GeneralContext.Provider value={{isMenuBarsOpen,
-                                         menuBarsToggleHandler,
-                                          active, 
-                                          activeToggleHandler,
+        <GeneralContext.Provider value={{
+                                          generalState,
+                                          generalDispatcher,
+                                          loginState,
+                                          loginDispatcher,
+                                          registerState,
+                                          registerDispatcher
                                           }}>
             {children}
         </GeneralContext.Provider>
