@@ -18,9 +18,11 @@ const NavBar = () => {
                 <img src={Logo} />
             </div>
             <div className='nav-bar-right'>
-                <div className={active === 'home' ? 'active' : null} onClick={() => activeToggleHandler('home')}><Link to="/"><HomeIcon /><span>Home</span></Link></div>
-                <div className={active === 'login' ? 'active' : null} onClick={() => activeToggleHandler('login')}><Link to="/login"><ExitToAppIcon /><span>Sign in</span></Link></div>
-                <div className={active === 'signup' ? 'active' : null} onClick={() => activeToggleHandler('signup')}><Link to="/signup"><AssignmentIndIcon /><span>Sign up</span></Link></div>
+                <ul>
+                    <Link className={active === 'home' ? 'active' : null} onClick={() => activeToggleHandler('home')} to="/" ><HomeIcon /><span>Home</span></Link>
+                    <Link className={active === 'login' ? 'active' : null} onClick={() => activeToggleHandler('login')} to="/login" ><ExitToAppIcon /><span>Sign in</span></Link>
+                    <Link className={active === 'signup' ? 'active' : null} onClick={() => activeToggleHandler('signup')} to="/signup" ><AssignmentIndIcon /><span>Sign up</span></Link>
+                </ul>
             </div>
         </div>
     )
