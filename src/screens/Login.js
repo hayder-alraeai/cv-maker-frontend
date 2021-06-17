@@ -1,5 +1,6 @@
 import '../styles/Login.css'
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import GeneralContext from '../context/GeneralContext'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -32,7 +33,25 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 const Login = () => {
+    //getting login state
+    const {loginState, loginDispatcher} = useContext(GeneralContext)
     const classes = useStyles();
+
+    //getting login credentials
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    //handle login
+    const handleSubmit = e => {
+      e.preventDefault()
+      if(email && password){
+        loginDispatcher({type: 'login', payload: {email, password}})
+        setEmail('')
+        setPassword('')
+      }else{
+        alert('please write your email or password!')
+      }
+    }
     return(
         <div className='login-wrapper'>
                 <Container component="main" maxWidth="xs">
@@ -43,9 +62,12 @@ const Login = () => {
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
+          <p>{'Login token: ' + loginState.token}</p>
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
+            onChange={e => setEmail(e.target.value)}
+            value={email}
             variant="outlined"
             margin="normal"
             required
@@ -57,6 +79,8 @@ const Login = () => {
             autoFocus
           />
           <TextField
+            onChange={e => setPassword(e.target.value)}
+            value={password}
             variant="outlined"
             margin="normal"
             required

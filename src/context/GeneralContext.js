@@ -2,6 +2,7 @@ import {createContext, useReducer} from 'react'
 import GeneralReducer from './reducers/GeneralReducer'
 import LoginReducer from './reducers/LoginReducer'
 import RegisterReducer from './reducers/RegisterReducer'
+import AuthReducer from './reducers/AuthReducer'
 const GeneralContext = createContext()
 
 export const GeneralContextProvider = ({children}) => {
@@ -10,8 +11,8 @@ export const GeneralContextProvider = ({children}) => {
                                                     active: 'home'
                                                 })
     const [loginState, loginDispatcher] = useReducer(LoginReducer, {
-                                                    email: '',
-                                                    password: ''
+                                                    token: '',
+                                                    message: ''
                                                 })
     const [registerState, registerDispatcher] = useReducer(RegisterReducer, {
                                                     firstName: '',
@@ -19,6 +20,7 @@ export const GeneralContextProvider = ({children}) => {
                                                     email: '',
                                                     password: ''
                                                 })
+    const [isAuthenticatedState, isAuthenticatedDispatcher] = useReducer(AuthReducer, {isAuth: false})
     return(
         <GeneralContext.Provider value={{
                                           generalState,
@@ -26,7 +28,9 @@ export const GeneralContextProvider = ({children}) => {
                                           loginState,
                                           loginDispatcher,
                                           registerState,
-                                          registerDispatcher
+                                          registerDispatcher,
+                                          isAuthenticatedState,
+                                          isAuthenticatedDispatcher
                                           }}>
             {children}
         </GeneralContext.Provider>
