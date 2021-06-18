@@ -7,8 +7,9 @@ import Logo from '../images/cv-maker.logo.svg'
 import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import { logoutHandler } from '../helpers/Utils';
 const NavBar = () => {
-    const {generalState, generalDispatcher, isAuthenticatedState} = useContext(GeneralContext)
+    const {generalState, generalDispatcher, isAuthenticatedState, isAuthenticatedDispatcher} = useContext(GeneralContext)
     return(
         <div className='nav-bar-wrapper'>
             <div className='nav-bar-left'>
@@ -21,7 +22,7 @@ const NavBar = () => {
                     {isAuthenticatedState.isAuth ? 
                     <ul>
                         <Link className={generalState.active === 'home' ? 'active' : null} onClick={() => generalDispatcher({type: 'active', payload: 'home' })} to="/" ><HomeIcon /><span>Home</span></Link>
-                        <Link className={generalState.active === 'login' ? 'active' : null} onClick={() => generalDispatcher({type: 'active', payload: 'login' })} to="/login" ><ExitToAppIcon /><span>Sign out</span></Link>
+                        <Link className={generalState.active === 'login' ? 'active' : null} onClick={() => logoutHandler(isAuthenticatedDispatcher)} to="/login" ><ExitToAppIcon /><span>Sign out</span></Link>
                     </ul>
                         :
                     <ul>

@@ -3,6 +3,8 @@ import {
     Switch,
     Route
   } from "react-router-dom";
+import { useJwt } from "react-jwt";
+import { useContext, useEffect } from "react";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Profile from "./screens/Profile";
@@ -11,8 +13,18 @@ import NavBar from "./components/NavBar"
 import SideMenu from "./components/SideMenu"
 import About from "./screens/About";
 import Settings from "./screens/Settings";
-
+import GeneralContext from "./context/GeneralContext";
+import AuthRoute from "./helpers/AuthRoute";
 const Router = () => {
+    const {isAuthenticatedState, isAuthenticatedDispatcher} = useContext(GeneralContext) 
+    const { isExpired } = useJwt(localStorage.getItem('token'));
+    useEffect(() => {
+        if(isExpired){
+            isAuthenticatedDispatcher({type: 'notAuth'})
+        }else{
+            isAuthenticatedDispatcher({type: 'auth'})
+        }
+    },[isAuthenticatedDispatcher, isExpired])
     return(
         <BrowserRouter>
             <Switch>
@@ -31,16 +43,16 @@ const Router = () => {
                     <SideMenu />
                     <Signup />
                 </Route>
-                <Route exact path='/profile'>
+                <AuthRoute isAuthenticatedState={isAuthenticatedState}  path='/profile'>
                     <NavBar />
                     <SideMenu />
                     <Profile />
-                </Route>
-                <Route exact path='/settings'>
+                </AuthRoute>
+                <AuthRoute isAuthenticatedState={isAuthenticatedState}  path='/settings'>
                     <NavBar />
                     <SideMenu />
                     <Settings />
-                </Route>
+                </AuthRoute>
                 <Route exact path='/about'>
                     <NavBar />
                     <SideMenu />

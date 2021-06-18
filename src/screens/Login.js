@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -17,6 +17,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { loginHandler } from '../apies/LoginApi'
 import LoadingIcon from '../components/LoadingIcon'
+import { useEffect } from 'react';
 const useStyles = makeStyles((theme) => ({
     paper: {
       display: 'flex',
@@ -45,7 +46,12 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-
+    const history = useHistory()
+    useEffect(() => {
+      if(isAuthenticatedState.isAuth){
+        history.push('/')
+      }
+    },[isAuthenticatedState.isAuth])
     //handle login
     const handleSubmit = async(e)=> {
       e.preventDefault()
