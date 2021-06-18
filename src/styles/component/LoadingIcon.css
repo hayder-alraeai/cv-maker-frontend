@@ -1,0 +1,13 @@
+.reload-icon{
+    width: 100%;
+    display: flex;
+    min-height: 24rem;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 30pt;
+}
+.reload-icon .reload-icon-text{
+    margin-top: 2rem;
+    font-size: 10pt;
+}

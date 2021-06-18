@@ -11,8 +11,8 @@ export const GeneralContextProvider = ({children}) => {
                                                     active: 'home'
                                                 })
     const [loginState, loginDispatcher] = useReducer(LoginReducer, {
-                                                    token: '',
-                                                    message: ''
+                                                    email: '',
+                                                    password: ''
                                                 })
     const [registerState, registerDispatcher] = useReducer(RegisterReducer, {
                                                     firstName: '',

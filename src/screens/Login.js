@@ -1,4 +1,5 @@
 import '../styles/Login.css'
+import {Redirect} from 'react-router-dom'
 import React, { useState, useContext } from 'react';
 import GeneralContext from '../context/GeneralContext'
 import Avatar from '@material-ui/core/Avatar';
@@ -14,6 +15,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { loginHandler } from '../apies/LoginApi'
+import LoadingIcon from '../components/LoadingIcon'
 const useStyles = makeStyles((theme) => ({
     paper: {
       display: 'flex',
@@ -34,35 +37,43 @@ const useStyles = makeStyles((theme) => ({
   }));
 const Login = () => {
     //getting login state
-    const {loginState, loginDispatcher} = useContext(GeneralContext)
+    const { isAuthenticatedDispatcher,  isAuthenticatedState} = useContext(GeneralContext)
     const classes = useStyles();
 
     //getting login credentials
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [message, setMessage] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     //handle login
-    const handleSubmit = e => {
+    const handleSubmit = async(e)=> {
       e.preventDefault()
       if(email && password){
-        loginDispatcher({type: 'login', payload: {email, password}})
+        setIsLoading(true)
+        loginHandler({email, password}, setMessage, isAuthenticatedDispatcher, setIsLoading)
         setEmail('')
         setPassword('')
       }else{
-        alert('please write your email or password!')
+        setMessage('please write your email or password!')
       }
+    }
+    if(isLoading){
+      return(
+          <LoadingIcon text="Loading..."/>
+      )
     }
     return(
         <div className='login-wrapper'>
                 <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+      {message ? <p style={{color: 'white', fontSize:'12px', backgroundColor: 'red', padding: '10px', fontWeight: 'bolder'}}>{message}</p> : null }
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
-          <p>{'Login token: ' + loginState.token}</p>
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField

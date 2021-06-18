@@ -1,10 +1,10 @@
 import {LoadingOutlined} from '@ant-design/icons'
-import '../styles/LoadingIcon.css'
-const LoadingIcon = () => {
+import '../styles/component/LoadingIcon.css'
+const LoadingIcon = ({text}) => {
     return(
         <div className="reload-icon">
             <LoadingOutlined />
-            <p className='reload-icon-text'>Loading...</p>
+            <p className='reload-icon-text'>{text}</p>
          </div>
     )
 }
