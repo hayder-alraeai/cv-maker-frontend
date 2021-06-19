@@ -1,8 +1,9 @@
 import axios from "axios";
 import { saveTokenInLocalStorage} from '../helpers/Utils'
+import {BASE_URL} from '../config/config'
 export const loginHandler = (data, setMessage, isAuthenticatedDispatcher, setIsLoading) => {
     axios
-        .post('http://localhost:5000/api/v1/login', {
+        .post(`${BASE_URL}/api/v1/login`, {
             email: data.email,
             password: data.password
         })

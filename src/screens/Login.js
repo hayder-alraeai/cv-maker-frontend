@@ -1,5 +1,4 @@
 import '../styles/Login.css'
-import {Redirect} from 'react-router-dom'
 import React, { useState, useContext } from 'react';
 import GeneralContext from '../context/GeneralContext'
 import Avatar from '@material-ui/core/Avatar';
@@ -18,6 +17,7 @@ import Container from '@material-ui/core/Container';
 import { loginHandler } from '../apies/LoginApi'
 import LoadingIcon from '../components/LoadingIcon'
 import { useEffect } from 'react';
+import AlertMessage from '../components/AlertMessage';
 const useStyles = makeStyles((theme) => ({
     paper: {
       display: 'flex',
@@ -74,7 +74,7 @@ const Login = () => {
                 <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-      {message ? <p style={{color: 'white', fontSize:'12px', backgroundColor: 'red', padding: '10px', fontWeight: 'bolder'}}>{message}</p> : null }
+      {message ? <AlertMessage message={message} style='error' /> : null }
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
