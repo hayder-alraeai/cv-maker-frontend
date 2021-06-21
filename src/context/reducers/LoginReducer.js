@@ -1,4 +1,11 @@
+
 const LoginReducer = (state, action) => {
-    return state
+    switch(action.type){
+        case 'login':
+            return {email: action.payload.email, password: action.payload.password}
+        default:
+            return state;
+    }
 }
+
 export default LoginReducer;

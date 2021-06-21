@@ -1,18 +1,23 @@
 import '../styles/Login.css'
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import GeneralContext from '../context/GeneralContext'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { loginHandler } from '../apies/LoginApi'
+import LoadingIcon from '../components/LoadingIcon'
+import { useEffect } from 'react';
+import AlertMessage from '../components/AlertMessage';
 const useStyles = makeStyles((theme) => ({
     paper: {
       display: 'flex',
@@ -32,20 +37,54 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 const Login = () => {
+    //getting login state
+    const { isAuthenticatedDispatcher,  isAuthenticatedState} = useContext(GeneralContext)
     const classes = useStyles();
+
+    //getting login credentials
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [message, setMessage] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+    const history = useHistory()
+    useEffect(() => {
+      if(isAuthenticatedState.isAuth){
+        history.push('/')
+      }
+    },[isAuthenticatedState.isAuth])
+    //handle login
+    const handleSubmit = async(e)=> {
+      e.preventDefault()
+      if(email && password){
+        setIsLoading(true)
+        loginHandler({email, password}, setMessage, isAuthenticatedDispatcher, setIsLoading)
+        setEmail('')
+        setPassword('')
+      }else{
+        setMessage('please write your email or password!')
+      }
+    }
+    if(isLoading){
+      return(
+          <LoadingIcon text="Loading..."/>
+      )
+    }
     return(
         <div className='login-wrapper'>
                 <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+      {message ? <AlertMessage message={message} style='error' /> : null }
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
+            onChange={e => setEmail(e.target.value)}
+            value={email}
             variant="outlined"
             margin="normal"
             required
@@ -57,6 +96,8 @@ const Login = () => {
             autoFocus
           />
           <TextField
+            onChange={e => setPassword(e.target.value)}
+            value={password}
             variant="outlined"
             margin="normal"
             required
