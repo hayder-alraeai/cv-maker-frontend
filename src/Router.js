@@ -15,6 +15,7 @@ import About from "./screens/About";
 import Settings from "./screens/Settings";
 import GeneralContext from "./context/GeneralContext";
 import AuthRoute from "./helpers/AuthRoute";
+import Verification from './screens/Verification'
 const Router = () => {
     const {isAuthenticatedState, isAuthenticatedDispatcher} = useContext(GeneralContext) 
     const { isExpired } = useJwt(localStorage.getItem('token'));
@@ -58,6 +59,10 @@ const Router = () => {
                     <SideMenu />
                     <About />
                 </Route>
+                <Route exact path='/verify/:id' >
+                    <NavBar />
+                    <Verification />
+                </Route >
             </Switch>
         </BrowserRouter>
     )
