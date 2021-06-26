@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 export default function AddCvInfo() {
-    const {userDetailsState, userDetailsDicpatcher} = useContext(GeneralContext)
+    const {userDetailsState, userDetailsDicpatcher, userInfoState} = useContext(GeneralContext)
     const classes = useStyles();
     const [message, setMessage] = useState({})
     const [isLoading, setIsLoading] = useState(false)
@@ -24,11 +24,11 @@ export default function AddCvInfo() {
     useEffect(() => {
         setMessage(userDetailsState.message)
         setIsLoading(userDetailsState.isLoading)
-        setProfileDetails(userDetailsState.userDetails)
+        // if(userDetailsState.userDetails) setProfileDetails(userDetailsState.userDetails)
     }, [isLoading, userDetailsState.isLoading, message, userDetailsState.message, userDetailsState.userDetails, profileDetails])
     const handleOnClick = () => {
         setIsLoading(true)
-        userDetailsDicpatcher({type: 'save', payload: {userDetails: profileDetails}})
+        userDetailsDicpatcher({type: 'save', payload: {userId: userInfoState.userId, userDetails: profileDetails}})
     }
     return (
         <div className='info-form-wrapper'>
@@ -45,37 +45,37 @@ export default function AddCvInfo() {
                         <div className='name-wrapper'>
                             <div className='first-name'>
                                 <p>First name<span>*</span></p>
-                                <input value={profileDetails.firstName} required type='text' onChange={e => setProfileDetails(prevState => ({...prevState, firstName: e.target.value}))} />
+                                <input value={userDetailsState.userDetails.firstName} required type='text' onChange={e => setProfileDetails(prevState => ({...prevState, firstName: e.target.value}))} />
                             </div>
                             <div className='last-name'>
                                 <p>Last name<span>*</span></p>
-                                <input value={profileDetails.lastName} required type='text' onChange={e => setProfileDetails(prevState => ({...prevState, lastName: e.target.value}))}  />
+                                <input value={userDetailsState.userDetails.lastName} required type='text' onChange={e => setProfileDetails(prevState => ({...prevState, lastName: e.target.value}))}  />
                             </div>    
                         </div>
                     </div>
                     <div className='email-phone-wrapper'>
                         <div className='email'>
                             <p>Email address</p>
-                            <input value={profileDetails.email} required type='text' onChange={e => setProfileDetails(prevState => ({...prevState, email: e.target.value}))} />
+                            <input value={userDetailsState.userDetails.email} required type='text' onChange={e => setProfileDetails(prevState => ({...prevState, email: e.target.value}))} />
                         </div>
                         <div className='phone'>
                             <p>Phone number</p>
-                            <input value={profileDetails.phoneNumber}  type='text' onChange={e => setProfileDetails(prevState => ({...prevState, phoneNumber: e.target.value}))} />
+                            <input value={userDetailsState.userDetails.phoneNumber}  type='text' onChange={e => setProfileDetails(prevState => ({...prevState, phoneNumber: e.target.value}))} />
                         </div>
                     </div>
                     <div className='address-wrapper'>
                         <div className='street'>
                             <p>Address</p>
-                            <input value={profileDetails.street} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, street: e.target.value}))} />
+                            <input value={userDetailsState.userDetails.street} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, street: e.target.value}))} />
                         </div>
                         <div className='post-state-wrapper'>
                             <div className='post'>
                                 <p>Post code</p>
-                                <input value={profileDetails.postCode} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, postCode: e.target.value}))} />
+                                <input value={userDetailsState.userDetails.postCode} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, postCode: e.target.value}))} />
                             </div>
                             <div className='state'>
                                 <p>State</p>
-                                <input value={profileDetails.state} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, state: e.target.value}))} />
+                                <input value={userDetailsState.userDetails.state} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, state: e.target.value}))} />
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ export default function AddCvInfo() {
                         <div className='birthday'>
                             <p>Birthday</p>
                             <TextField
-                                value={profileDetails.birthDate}
+                                value={userDetailsState.userDetails.birthDate}
                                 onChange={e => setProfileDetails(prevState => ({...prevState, birthDate: e.target.value}))} 
                                 type="date"
                                 defaultValue="2017-05-24"
@@ -97,18 +97,18 @@ export default function AddCvInfo() {
                         </div>
                         <div className='birthplace'>
                             <p>Birthplace</p>
-                            <input value={profileDetails.birthPlace} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, birthPlace: e.target.value}))} />
+                            <input value={userDetailsState.userDetails.birthPlace} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, birthPlace: e.target.value}))} />
                         </div>
                     </div>
                     {/* Driving license  and marital status */}
                     <div className='driving-gender-wrapper'>
                         <div className='driving'>
                             <p>Driving license</p>
-                            <input value={profileDetails.drivingLicense} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, drivingLicense: e.target.value}))} />
+                            <input value={userDetailsState.userDetails.drivingLicense} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, drivingLicense: e.target.value}))} />
                         </div>
                         <div className='gender'>
                             <p>Gender</p>
-                            <select value={profileDetails.gender} onChange={e => setProfileDetails(prevState => ({...prevState, gender: e.target.value}))} >
+                            <select value={userDetailsState.userDetails.gender} onChange={e => setProfileDetails(prevState => ({...prevState, gender: e.target.value}))} >
                                 <option value='Male'>Male</option>
                                 <option value='Female'>Female</option>
                             </select>
@@ -118,27 +118,27 @@ export default function AddCvInfo() {
                     <div className='nationality-marital-wrapper'>
                         <div className='nationality'>
                             <p>Nationality</p>
-                            <input value={profileDetails.nationality} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, nationality: e.target.value}))}  />
+                            <input value={userDetailsState.userDetails.nationality} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, nationality: e.target.value}))}  />
                         </div>
                         <div className='marital'>
                             <p>Marital status</p>
-                            <input value={profileDetails.maritalStatus} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, maritalStatus: e.target.value}))} />
+                            <input value={userDetailsState.userDetails.maritalStatus} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, maritalStatus: e.target.value}))} />
                         </div>
                     </div>
                     {/* social media */}
                     <div className='social-wrapper'>
                         <div className='linkedin'>
                             <p>LinkedIn</p>
-                            <input value={profileDetails.linkedIn}  type='text' onChange={e => setProfileDetails(prevState => ({...prevState, linkedIn: e.target.value}))} />
+                            <input value={userDetailsState.userDetails.linkedIn}  type='text' onChange={e => setProfileDetails(prevState => ({...prevState, linkedIn: e.target.value}))} />
                         </div>
                         <div className='web'>
                             <p>Website</p>
-                            <input value={profileDetails.website} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, website: e.target.value}))} />
+                            <input value={userDetailsState.userDetails.website} type='text' onChange={e => setProfileDetails(prevState => ({...prevState, website: e.target.value}))} />
                         </div>
                     </div>
                     <div className='profile-description'>
                         <p>About me</p>
-                        <textarea value={profileDetails.aboutMe} onChange={e => setProfileDetails(prevState => ({...prevState, aboutMe: e.target.value}))} />
+                        <textarea value={userDetailsState.userDetails.aboutMe} onChange={e => setProfileDetails(prevState => ({...prevState, aboutMe: e.target.value}))} />
                     </div>
                         <LoadingButton title='Save' isLoading={isLoading} onClick={handleOnClick} />
                     </div>

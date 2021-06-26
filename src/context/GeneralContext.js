@@ -10,6 +10,7 @@ const GeneralContext = createContext()
 export const GeneralContextProvider = ({children}) => {
     const [userDetailsState, userDetailsDicpatcher] = useReducer(UserDetailsReducer, {
                                                     isLoading: false,
+                                                    userId: '',
                                                     message: {text: '', style: ''},
                                                     userDetails: {}
                                                 })
