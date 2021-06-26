@@ -19,8 +19,8 @@ import Verification from './screens/Verification'
 import NotFound from "./screens/NotFound";
 import AddCvInfo from "./screens/AddCvInfo";
 const Router = () => {
-    const {isAuthenticatedState, isAuthenticatedDispatcher} = useContext(GeneralContext) 
-    const { isExpired } = useJwt(localStorage.getItem('token'));
+    const {isAuthenticatedState, isAuthenticatedDispatcher, userInfoDispatcher} = useContext(GeneralContext) 
+    const { isExpired, decodedToken } = useJwt(localStorage.getItem('token'));
     useEffect(() => {
         if(isExpired){
             isAuthenticatedDispatcher({type: 'notAuth'})
@@ -28,6 +28,9 @@ const Router = () => {
             isAuthenticatedDispatcher({type: 'auth'})
         }
     },[isAuthenticatedDispatcher, isExpired])
+    useEffect(() => {
+        if(decodedToken) userInfoDispatcher({type: 'info', payload: {userId: decodedToken.userId, email: decodedToken.email, exp: decodedToken.exp}})
+    }, [decodedToken, userInfoDispatcher])
     return(
         <BrowserRouter>
             <Switch>
@@ -56,6 +59,11 @@ const Router = () => {
                     <SideMenu />
                     <Settings />
                 </AuthRoute>
+                <AuthRoute isAuthenticatedState={isAuthenticatedState}  exact path='/person-details/:id' >
+                    <NavBar />
+                    <SideMenu />
+                    <AddCvInfo />
+                </AuthRoute>
                 <Route exact path='/about'>
                     <NavBar />
                     <SideMenu />
@@ -64,11 +72,6 @@ const Router = () => {
                 <Route exact path='/verify/:id' >
                     <NavBar />
                     <Verification />
-                </Route >
-                <Route exact path='/person-details/:id' >
-                    <NavBar />
-                    <SideMenu />
-                    <AddCvInfo />
                 </Route >
                 <Route exact path='/404' >
                     <NavBar />
