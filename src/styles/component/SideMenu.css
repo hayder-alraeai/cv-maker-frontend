@@ -42,4 +42,8 @@
         top: 4rem;
         left: 3.5rem;
     }
+    .side-menu-wrapper.active{
+        width:80%;
+        border-radius: 5px 15px 15px 15px;
+    }
 }
