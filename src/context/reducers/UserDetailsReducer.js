@@ -6,6 +6,9 @@ const UserDetailsReducer = (state, action) => {
             //implementing code to post those info to the backend
             createUserDetails(action.payload.userDetails, action.payload.userId )
             return {isLoading: false, userId: action.payload.userId, message: {text: 'your info has been saved!', style: 'success'}, userDetails: action.payload.userDetails}
+        case 'cleanMessage':
+            console.log('trigged!');
+            break
         default:
             return state
     }

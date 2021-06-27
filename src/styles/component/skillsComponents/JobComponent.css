@@ -1,0 +1,71 @@
+.job-wrapper{
+    background-color:white;
+    width: 100%;
+    border-radius: 4px;
+    padding:35px 40px;
+    box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%);
+    cursor: pointer;
+    color: grey;
+    font-weight: normal;
+    font-size: 15px;
+}
+.job-title-wrapper, .date-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items:center;
+    font-weight: bolder;
+}
+.date-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items:center;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+.job-title-wrapper div:not(:first-of-type){
+    margin-left: 15px;
+}
+.job-wrapper .job-body-wrapper input, textarea{
+    width: 100%;
+    background-color: #fff;
+    border: 2px solid #eaeaea;
+    border-radius: 3px;
+    padding: 0 14px 1px;
+    height: 48px;
+    font-size: 16px;
+    -webkit-appearance: none;
+    margin: 5px 0;
+}
+.job-body-wrapper{
+    padding: 20px 0;
+    overflow: hidden;
+    transition: .7s display ease-in-out;
+}
+.job-body-wrapper.hide{
+    display: none;
+}
+.job-body-wrapper hr{
+    margin: 20px 0;
+}
+.title-city-wrapper{
+    display: flex;
+    justify-content:space-between;
+    align-items:center
+}
+.title-city-wrapper div, .date-wrapper-element{
+    width: 100%;
+}
+.title-city-wrapper>div:not(:first-of-type), .date-wrapper>div:not(:first-of-type){
+    padding-left: 20px;
+}
+.date-wrapper-element>div{
+    color: grey;
+    font-weight: normal;
+    font-size: 15px;
+}
+.job-description-wrapper, .employer-wrapper{
+    margin-top: 20px;
+}
+@media (max-width : 600px){
+
+}

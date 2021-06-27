@@ -1,0 +1,27 @@
+.skills-form-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* max-width: 50%; */
+    width: 900px;
+    margin: auto;
+    min-height: calc(100vh - 30rem);
+    z-index: 100;
+}
+.skills-form-wrapper .skills-form-body{
+    margin: -100px 0 50px 0;
+    z-index: 1;
+}
+.skills-form-body>div{
+    margin-bottom: 30px;
+}
+
+@media (max-width : 900px){
+    .skills-form-wrapper{
+        /* max-width: 50%; */
+        width: 100%;
+        margin: auto;
+        min-height: calc(100vh - 30rem);
+        z-index: 100;
+    }
+}

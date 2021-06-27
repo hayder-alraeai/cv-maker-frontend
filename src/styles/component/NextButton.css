@@ -1,0 +1,20 @@
+.next-button-wrapper{
+    display:flex;
+    margin: auto;
+    width: 150px;
+    background-color: blue;
+    color: white;
+    justify-content:space-between;
+    align-items:center;
+    padding: 15px;
+    border-radius:5px;
+    cursor: pointer;
+    opacity: .6;
+    /* transition: .3s opacity ease-in-out; */
+}
+.next-button-wrapper:hover{
+    opacity: 1;
+}
+.next-button-wrapper div{
+    font-weight: bolder;
+}

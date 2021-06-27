@@ -1,6 +1,6 @@
 .info-form-wrapper{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     /* max-width: 50%; */
     width: 900px;
@@ -17,7 +17,7 @@
     height: auto;
 }
 .info-form-wrapper .info-form-body{
-    margin: -150px 0 -50px 0;
+    margin: -100px 0 20px 0;
     background-color:white;
     width: 100%;
     z-index: 1;
@@ -221,12 +221,12 @@
         width: 100%;
     }
 }
-@media (max-width : 600px){
+/* @media (max-width : 600px){
 
-}
+} */
 @media (max-width : 600px){
     .info-form-wrapper .info-form-body{
-        margin: -100px 0 -50px 0;
+        margin: -100px 0 50px 0;
     }
     .image-name-wrapper{
         flex-direction: column;

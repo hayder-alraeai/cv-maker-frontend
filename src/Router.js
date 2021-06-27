@@ -18,6 +18,7 @@ import AuthRoute from "./helpers/AuthRoute";
 import Verification from './screens/Verification'
 import NotFound from "./screens/NotFound";
 import AddCvInfo from "./screens/AddCvInfo";
+import Skills from "./screens/Skills";
 const Router = () => {
     const {isAuthenticatedState, isAuthenticatedDispatcher, userInfoDispatcher} = useContext(GeneralContext) 
     const { isExpired, decodedToken } = useJwt(localStorage.getItem('token'));
@@ -63,6 +64,11 @@ const Router = () => {
                     <NavBar />
                     <SideMenu />
                     <AddCvInfo />
+                </AuthRoute>
+                <AuthRoute isAuthenticatedState={isAuthenticatedState}  exact path='/person-skills/:id'>
+                    <NavBar />
+                    <SideMenu />
+                    <Skills />
                 </AuthRoute>
                 <Route exact path='/about'>
                     <NavBar />

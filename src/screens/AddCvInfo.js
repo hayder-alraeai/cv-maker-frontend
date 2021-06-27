@@ -10,18 +10,21 @@ import LoadingButton from '../components/LoadingButton'
 import GeneralContext from '../context/GeneralContext';
 import AlertMessage from '../components/AlertMessage'
 import {getUserDetails} from '../apies/UserDetailsApi'
+import NextButton from '../components/NextButton';
+import {useHistory} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     textField: {
       width: '100%',
     },
   }));
 export default function AddCvInfo() {
+    let history = useHistory()
     const {userDetailsState, userDetailsDicpatcher, userInfoState} = useContext(GeneralContext)
     const classes = useStyles();
     const [message, setMessage] = useState({})
     const [isLoading, setIsLoading] = useState(false)
     const [profileDetails, setProfileDetails] = useState({})
-    const [showMoreInfo, setShowMoreInfo] = useState(false)
+    const [showMoreInfo, setShowMoreInfo] = useState(true)
     useEffect(() => {
         getUserDetails(userInfoState.userId, setProfileDetails)
     }, [])
@@ -152,6 +155,10 @@ export default function AddCvInfo() {
                 </form>
             </div>
             </div>
+            <NextButton title='Next' leftOrRight='right' onClick={() => {
+                setMessage({})
+                history.push(`/person-skills/${userInfoState.userId}`)
+            }}/>
         </div>
     )
 }

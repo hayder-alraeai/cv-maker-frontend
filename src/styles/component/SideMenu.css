@@ -3,7 +3,7 @@
     position: absolute;
     top: 6rem;
     left: 8.5rem;
-    width: 10%;
+    width: 0;
     opacity: 0;
     background: linear-gradient(to right, #f74d40, #f5c160);
     transition: .7s all ease-in-out;
@@ -13,6 +13,7 @@
     box-shadow: 0 4px 4px 4px rgba(0, 0, 0, .12);
 }
 .side-menu-wrapper.active{
+    width: 20rem;
     opacity: 1;
 }
 .side-menu-wrapper ul{
@@ -38,7 +39,6 @@
 
 @media (max-width : 600px){
     .side-menu-wrapper{
-        width: 60%;
         top: 4rem;
         left: 3.5rem;
     }
