@@ -14,9 +14,17 @@
     width: 60%;
 }
 .home-wrapper .home-right{
+    background-color: white;
+    margin-top: -120px;
     width: 50%;
+    height:50vh;
     text-align: center;
     align-self: flex-start;
+    border-radius: 10px;
+    padding-top: 50px;
+    box-shadow: 0 4px 4px 4px rgba(0, 0, 0, .12);
+    color: grey;
+    z-index: 1;
 }
 .home-wrapper .home-right span a{
     color: blue;
@@ -38,5 +46,8 @@
     .home-wrapper .home-right{
         align-self: center;
         width: 100%;
+        margin-top:0;
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        z-index: 0;
     }
 }

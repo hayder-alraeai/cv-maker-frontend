@@ -1,6 +1,6 @@
 import axios from "axios";
 import {BASE_URL} from '../config/config'
-export const loginHandler = (data, setMessage, setIsLoading, clearForm, history) => {
+export const registerHandler = (data, setMessage, setIsLoading, clearForm, setIsSubmitted) => {
     axios
         .post(`${BASE_URL}/api/v1/users`, {
             firstName: data.firstName,
@@ -10,7 +10,7 @@ export const loginHandler = (data, setMessage, setIsLoading, clearForm, history)
         })
         .then(() => setIsLoading(false))
         .then(() => clearForm())
-        .then(() => history.push('/login'))
+        .then(() => setIsSubmitted(true))
         .catch(error => {
             if(error.response){
                 setIsLoading(false)

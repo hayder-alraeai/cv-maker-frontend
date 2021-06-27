@@ -1,0 +1,15 @@
+.submit-button-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    margin: 20px auto 0 auto;
+    padding: 15px 0;
+    color: white;
+    background: linear-gradient(to bottom, #f74d40, #f5c160);
+    cursor: pointer;
+    border-radius: 5px;
+}
+.submit-button-wrapper .icon{
+    margin-right: 10px;
+}

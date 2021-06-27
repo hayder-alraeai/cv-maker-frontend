@@ -11,8 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useState } from 'react';
-import {useHistory} from 'react-router-dom'
-import {loginHandler} from '../apies/RegisterApi'
+import {registerHandler} from '../apies/RegisterApi'
 import LoadingIcon from '../components/LoadingIcon'
 import AlertMessage from '../components/AlertMessage';
 const useStyles = makeStyles((theme) => ({
@@ -38,12 +37,12 @@ const Signup = () => {
     const [user, setUser] = useState({})
     const [message, setMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const history = useHistory()
+    const [isSubmitted, setIsSubmitted] = useState(false)
     const handleSubmit = (e) => {
         e.preventDefault()
         if(user) {
             setIsLoading(true)
-            loginHandler(user, setMessage, setIsLoading, clearForm, history)
+            registerHandler(user, setMessage, setIsLoading, clearForm, setIsSubmitted)
         }
         
     }
@@ -55,6 +54,13 @@ const Signup = () => {
             <LoadingIcon text="Loading..."/>
         )
       }
+    if(isSubmitted){
+        return(
+            <div className="signup-wrapper">
+                <p>Thank you for registration, we have sent you an email with a link for verification, please check your junk mail!</p>
+            </div>
+        )
+    }
     return(
         <div className='signup-wrapper'>
                 <Container component="main" maxWidth="xs">
