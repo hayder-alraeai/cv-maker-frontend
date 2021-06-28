@@ -18,7 +18,7 @@ export const createUserDetails = (data, userId) => {
                         maritalStatus: data.maritalStatus,
                         linkedIn: data.linkedIn,
                         website: data.website,
-                        aboutMe: data.aboutMe
+                        aboutMe: data.aboutMe,
         })
         .then(res => {
             if(res.data.status === 'success'){
@@ -30,6 +30,13 @@ export const createUserDetails = (data, userId) => {
                 return error.response.data.message
             }
         })
+}
+export const addWork = (data, userId) => {
+    axios
+    .put(`${BASE_URL}/api/v1/user-details/work/${userId}`, {
+        workExperiences: data,
+    })
+    .catch(error => error.response.data.message)
 }
 export const getUserDetails = (userId, setData) => {
     axios

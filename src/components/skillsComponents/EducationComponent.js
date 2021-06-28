@@ -43,8 +43,9 @@ export default function EducationComponent() {
                                 type="date"
                                 defaultValue="2017-05-24"
                                 className={classes.textField}
+                                variant="standard"
                                 InputLabelProps={{
-                                shrink: true,
+                                shrink: true,   
                                 }} />
                         </div>
                         <div className='date-wrapper-element'>

@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
+import GeneralContext from '../../context/GeneralContext'
 import '../../styles/component/skillsComponents/JobComponent.css';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import { makeStyles } from '@material-ui/core/styles';
+import {getUserDetails} from '../../apies/UserDetailsApi'
 import TextField from '@material-ui/core/TextField';
 import LoadingButton from '../../components/LoadingButton'
 const useStyles = makeStyles((theme) => ({
@@ -10,22 +12,27 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 export default function JobComponent() {
+    const {userDetailsState, userDetailsDicpatcher, userInfoState} = useContext(GeneralContext)
     const classes = useStyles();
     const [work, setWork] = useState({})
     const [works, setWorks] = useState([])
     const [showForm, setShowForm] = useState(false);
+
     const handleAddWork = () => {
         setWorks([...works, work])
     }
+    const handleSaveWork = () => { 
+        userDetailsDicpatcher({type: 'addWork', payload: {userId: userInfoState.userId, userDetails: {workExperiences: works}}})
+    }
     return (
         <div className='job-wrapper'>
-            {works.map(w => {
+            { works !== undefined ? works.map(w => {
                 return(
                     <div>
                         <div>{w.title}</div>
                     </div>
                 )
-            })}
+            }) : null}
             <div className='job-title-wrapper' onClick={() => setShowForm(!showForm)} >
                 <div><BusinessCenterIcon /></div>
                 <div>Work experience</div>
@@ -80,6 +87,7 @@ export default function JobComponent() {
                         <div><textarea value={work.description} onChange={e => setWork(prevState => ({...prevState, description: e.target.value}))} /></div>
                     </div>
                     <LoadingButton title='Add' onClick={handleAddWork} />
+                    <div onClick={handleSaveWork}>Save</div>
                 </form>
             </div>
         </div>

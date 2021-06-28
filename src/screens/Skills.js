@@ -4,6 +4,7 @@ import GeneralContext from '../context/GeneralContext'
 import NextButton from '../components/NextButton'
 import AlertMessage from '../components/AlertMessage'
 import '../styles/Skills.css'
+import CompetenciesComponent from '../components/skillsComponents/CompetenciesComponent'
 import JobComponent from '../components/skillsComponents/JobComponent'
 import EducationComponent from '../components/skillsComponents/EducationComponent'
 export default function Skills() {
@@ -26,6 +27,9 @@ export default function Skills() {
                 </div>
                 <div>
                     <EducationComponent />
+                </div>
+                <div>
+                    <CompetenciesComponent />
                 </div>
             </div>
             <NextButton title='Back' leftOrRight='left' onClick={() => history.push(`/person-details/${userInfoState.userId}`)} />

@@ -1,3 +1,4 @@
+
 .job-wrapper{
     background-color:white;
     width: 100%;
@@ -25,7 +26,7 @@
 .job-title-wrapper div:not(:first-of-type){
     margin-left: 15px;
 }
-.job-wrapper .job-body-wrapper input, textarea{
+.job-wrapper .job-body-wrapper input, textarea, select{
     width: 100%;
     background-color: #fff;
     border: 2px solid #eaeaea;
